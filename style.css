@@ -1,5 +1,6 @@
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -10,6 +11,13 @@ body {
 
 #clock-container {
     text-align: center;
+    margin-bottom: 40px;
+}
+
+#date {
+    font-size: 1.5rem;
+    color: #666;
+    margin-top: 10px;
 }
 
 #clock {
@@ -20,4 +28,35 @@ body {
     padding: 20px 40px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+#stopwatch-container {
+    text-align: center;
+}
+
+#stopwatch {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    background-color: #fff;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+#stopwatch-controls button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+#stopwatch-controls button:hover {
+    background-color: #45a049;
 }
