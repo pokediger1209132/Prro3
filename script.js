@@ -1,12 +1,21 @@
+function formatTo12Hour(date) {
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const hoursStr = String(hours).padStart(2, '0');
+    return { hours: hoursStr, minutes, seconds, ampm };
+}
+
 function updateClockAndDate() {
     const now = new Date();
 
     // Update Clock
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const time = formatTo12Hour(now);
     const clockElement = document.getElementById('clock');
-    clockElement.innerHTML = `${hours}:${minutes}:<span id="seconds-display">${seconds}</span>`;
+    clockElement.innerHTML = `${time.hours}:${time.minutes}:<span id="seconds-display">${time.seconds}</span> ${time.ampm}`;
 
     const secondsElement = document.getElementById('seconds-display');
     if (secondsElement) {
@@ -51,11 +60,8 @@ function updateIthacaClock() {
     // Calculate Ithaca time
     const ithacaTime = new Date(utcTime + (3600000 * ithacaOffset));
 
-    const hours = String(ithacaTime.getHours()).padStart(2, '0');
-    const minutes = String(ithacaTime.getMinutes()).padStart(2, '0');
-    const seconds = String(ithacaTime.getSeconds()).padStart(2, '0');
-    const timeString = `${hours}:${minutes}:${seconds}`;
-    ithacaClockDisplay.textContent = timeString;
+    const time = formatTo12Hour(ithacaTime);
+    ithacaClockDisplay.textContent = `${time.hours}:${time.minutes}:${time.seconds} ${time.ampm}`;
 }
 
 function updateAllClocks() {
