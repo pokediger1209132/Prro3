@@ -5,8 +5,16 @@ function updateClockAndDate() {
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
-    const timeString = `${hours}:${minutes}:${seconds}`;
-    document.getElementById('clock').textContent = timeString;
+    const clockElement = document.getElementById('clock');
+    clockElement.innerHTML = `${hours}:${minutes}:<span id="seconds-display">${seconds}</span>`;
+
+    const secondsElement = document.getElementById('seconds-display');
+    if (secondsElement) {
+        secondsElement.classList.add('tick');
+        setTimeout(() => {
+            secondsElement.classList.remove('tick');
+        }, 500); // Match animation duration
+    }
 
     // Update Date
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -89,6 +97,7 @@ function updateStopwatch() {
 startBtn.addEventListener('click', () => {
     if (!isRunning) {
         isRunning = true;
+        stopwatchDisplay.classList.add('active');
         startTime = Date.now() - elapsedTime;
         stopwatchInterval = setInterval(updateStopwatch, 10); // Update every 10ms
     }
@@ -97,12 +106,14 @@ startBtn.addEventListener('click', () => {
 stopBtn.addEventListener('click', () => {
     if (isRunning) {
         isRunning = false;
+        stopwatchDisplay.classList.remove('active');
         clearInterval(stopwatchInterval);
     }
 });
 
 resetBtn.addEventListener('click', () => {
     isRunning = false;
+    stopwatchDisplay.classList.remove('active');
     clearInterval(stopwatchInterval);
     elapsedTime = 0;
     stopwatchDisplay.textContent = formatTime(elapsedTime);

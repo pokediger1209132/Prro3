@@ -14,6 +14,22 @@ body {
     margin-bottom: 40px;
 }
 
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(76, 175, 80, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+}
+
+#stopwatch.active {
+    animation: glow 2s infinite;
+}
+
 #date {
     font-size: 1.5rem;
     color: #666;
@@ -61,11 +77,15 @@ body {
     cursor: pointer;
     background-color: #4CAF50;
     color: white;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.1s;
 }
 
 #stopwatch-controls button:hover {
     background-color: #45a049;
+}
+
+#stopwatch-controls button:active {
+    transform: scale(0.95);
 }
 
 #ithaca-clock-container {
@@ -86,4 +106,20 @@ body {
     padding: 15px 30px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+@keyframes tick {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#seconds-display.tick {
+    animation: tick 0.5s ease-in-out;
 }
