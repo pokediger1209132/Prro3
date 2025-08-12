@@ -12,6 +12,12 @@ function updateClockAndDate() {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const dateString = now.toLocaleDateString(undefined, options);
     document.getElementById('date').textContent = dateString;
+
+    // Update Timezone
+    const timezoneMatch = now.toString().match(/\(([^)]+)\)/);
+    if (timezoneMatch && timezoneMatch[1]) {
+        document.getElementById('timezone').textContent = timezoneMatch[1];
+    }
 }
 
 // Update the clock and date every second

@@ -20,6 +20,12 @@ body {
     margin-top: 10px;
 }
 
+#timezone {
+    font-size: 1rem;
+    color: #888;
+    margin-top: 5px;
+}
+
 #clock {
     font-size: 5rem;
     font-weight: bold;
