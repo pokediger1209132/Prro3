@@ -1,0 +1,125 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
+
+#clock-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(76, 175, 80, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+}
+
+#stopwatch.active {
+    animation: glow 2s infinite;
+}
+
+#date {
+    font-size: 1.5rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+#timezone {
+    font-size: 1rem;
+    color: #888;
+    margin-top: 5px;
+}
+
+#clock {
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: #333;
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+#stopwatch-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#stopwatch {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    background-color: #fff;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+#stopwatch-controls button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+#stopwatch-controls button:hover {
+    background-color: #45a049;
+}
+
+#stopwatch-controls button:active {
+    transform: scale(0.95);
+}
+
+#ithaca-clock-container {
+    text-align: center;
+}
+
+.clock-title {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+#ithaca-clock {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    background-color: #e0e0e0;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+@keyframes tick {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#seconds-display.tick {
+    animation: tick 0.5s ease-in-out;
+}
