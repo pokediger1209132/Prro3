@@ -42,12 +42,22 @@ const ithacaClockDisplay = document.getElementById('ithaca-clock');
 
 function isDst(d) {
     const year = d.getFullYear();
-    // DST starts on the second Sunday in March
-    const dstStart = new Date(year, 2, 14);
-    dstStart.setDate(14 - dstStart.getDay());
-    // DST ends on the first Sunday in November
-    const dstEnd = new Date(year, 10, 7);
-    dstEnd.setDate(7 - dstEnd.getDay());
+
+    // Find the second Sunday in March
+    const firstOfMarch = new Date(year, 2, 1);
+    const dayOfWeek = firstOfMarch.getDay(); // 0=Sun, 1=Mon, ...
+    const firstSunday = new Date(year, 2, 1 + (7 - dayOfWeek) % 7);
+    const dstStart = new Date(firstSunday.getTime() + 7 * 24 * 60 * 60 * 1000);
+    // Set time to 2 AM
+    dstStart.setHours(2);
+
+    // Find the first Sunday in November
+    const firstOfNovember = new Date(year, 10, 1);
+    const firstSundayNov = new Date(year, 10, 1 + (7 - firstOfNovember.getDay()) % 7);
+    const dstEnd = new Date(firstSundayNov.getTime());
+    // Set time to 2 AM
+    dstEnd.setHours(2);
+
     return d >= dstStart && d < dstEnd;
 }
 
